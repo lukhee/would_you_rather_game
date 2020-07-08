@@ -23,6 +23,10 @@ code {
   }
 
   h2{
-    font-size: 1.7em
+    font-size: 1.3em
+  }
+
+  .name{
+    font-size: 10px !important;
   }
 }
