@@ -28,7 +28,7 @@ const QuestionCard = ({
   }
 
   return (
-    <div className='shadow p-3 bg-light mb-3 border rounded-sm'>
+    <div className='shadow p-3 bg-light mb-5 border rounded-sm'>
       <OptionDiv
         selectedOption={`${id}_optionA` === isSelected ? true : false}
         onClick={(e)=>selectHandler(e)}

@@ -14,11 +14,16 @@ const VerticalLine = styled.span`
   margin: auto 10px;
 `;
 
+const Badge = styled.span`
+position: absolute;
+top: -7px;
+font-size: 10px;
+`
+
 const NavBar = ({
   auth: { user, isAuthenticated, loading },
   questions,
   logout,
-  history,
 }) => {
   let no_q_created, no_q_answered = 0
   if(isAuthenticated){
@@ -26,22 +31,22 @@ const NavBar = ({
     no_q_answered = questions.filter(({answers}) => answers.some(item => [user.id].includes(item))).length
   }
   return (
-    <NavBarDiv className='d-flex justify-content-between bg-light p-2 px-4'>
+    <NavBarDiv className='row justify-content-between p-2 px-4 border-bottom border-danger'>
       <div className='col-2 d-flex justify-content-between'>
-        <h2> Logo </h2>
+        <h2 className="my-auto"> Logo </h2>
         <VerticalLine></VerticalLine>
       </div>
       {!loading && isAuthenticated && (
         <div className='d-flex justify-content-between col-10 my-auto'>
           <div className='d-flex'>
-            <p className='p-1 px-2 my-auto mr-2 shadow-sm bg-white rounded'>
-              Q-Ans<span className='badge badge-danger ml-1'>{no_q_answered}</span>
+            <p className='p-1 px-2 my-auto mr-2 shadow-sm bg-white rounded position-relative'>
+              Q-Ans<Badge className='badge badge-danger ml-1'>{no_q_answered}</Badge>
             </p>
-            <p className='p-1 px-2 my-auto mr-2 shadow-sm bg-white rounded'>
+            <p className='p-1 px-2 my-auto mr-2 shadow-sm bg-white rounded position-relative'>
               Q-Crt
-              <span className='badge badge-danger ml-1'>
+              <Badge className='badge badge-danger ml-1'>
                 {no_q_created}
-              </span>
+              </Badge>
             </p>
           </div>
           <div className='d-flex'>

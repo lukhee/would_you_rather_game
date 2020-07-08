@@ -24,10 +24,10 @@ const HomePage = ({ questions, updateQuestion, auth:{user, loading} }) => {
   return (
     <div className='h-100'>
       <div className='col-md-8 mx-auto py-4 h-100'>
-        <button to='/homepage' className='mb-3 d-inline btn btn-light'>
+        <button to='/homepage' className='mb-3 d-inline btn btn-outline-danger'>
           <span>Toggle Question </span>
         </button>
-        <div className='border border-dander text-center py-3 px-2 mt-4 '>
+        <div className='border border-dander text-center py-3 px-2 mt-4 bg-white '>
           <h2> WOULD YOU RATHER </h2>
           {!loading && unAnsweredQuestion.length !== 0 ? (
             <QuestionDiv>

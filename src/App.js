@@ -15,7 +15,6 @@ import store from './store';
 
 const Section = styled.section`
   height: 80vh;
-  background: grey;
 `;
 
 function App() {
@@ -24,7 +23,7 @@ function App() {
       <div>
         <Router>
           <NavBar />
-          <Section className='container'>
+          <Section className='container bg-light'>
             <Switch>
               <Route path='/' exact component={LoginPage} />
               <PrivateRoute path='/HomePage' exact component={HomePage} />
