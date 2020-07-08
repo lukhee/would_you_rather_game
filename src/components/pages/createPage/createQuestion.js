@@ -29,7 +29,7 @@ function CreateQuestion({history, createQuestion, user}) {
         <i className='fas fa-arrow-left mr-2'></i> <span>Home</span>
       </Link>
       <div className='border border-dander text-center py-3 px-2 mt-4 '>
-        <h2> WOULD YOU RATHER </h2>
+        <h2 className="text-weight-bold"> WOULD YOU RATHER </h2>
 
         <form onSubmit={(e) => onSubmit(e)} className='mt-2'>
           <div className='form-group d-md-flex justify-content-between'>

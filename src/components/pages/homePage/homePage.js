@@ -28,7 +28,7 @@ const HomePage = ({ questions, updateQuestion, auth:{user, loading} }) => {
           <span>Toggle Question </span>
         </button>
         <div className='border border-dander text-center py-3 px-2 mt-4 bg-white '>
-          <h2> WOULD YOU RATHER </h2>
+          <h2 className="text-weight-bold"> WOULD YOU RATHER </h2>
           {!loading && unAnsweredQuestion.length !== 0 ? (
             <QuestionDiv>
               {unAnsweredQuestion.map((ques) => (

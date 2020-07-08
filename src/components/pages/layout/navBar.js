@@ -35,13 +35,13 @@ const NavBar = ({
     ).length;
   }
   return (
-    <NavBarDiv className='row justify-content-between p-2 px-4 border-bottom border-danger'>
-      <div className='col-2 d-flex justify-content-between'>
+    <NavBarDiv className='row justify-content-between m-0 p-2 px-4 border-bottom border-danger'>
+      <div className='col-2 d-flex justify-content-around p-0'>
         <h2 className='my-auto font-weight-bold'> WYR </h2>
         <VerticalLine />
       </div>
       {!loading && isAuthenticated && (
-        <div className='d-flex justify-content-between col-10 my-auto'>
+        <div className='d-flex justify-content-between col-10 my-auto p-0'>
           <div className='d-flex'>
             <p className='p-1 my-auto mx-2 shadow-sm bg-white rounded position-relative'>
               Q-Ans
