@@ -1,14 +1,9 @@
 import React from 'react';
 import QuestionTag from './questionCard';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
 import { updateQuestion } from '../../../actions/question';
 import Proptypes from 'prop-types';
-
-const QuestionDiv = styled.div`
-  max-height: 300px;
-  overflow: auto;
-`;
 
 const HomePage = ({ questions, updateQuestion, auth:{user, loading} }) => {
   // finding the unanswered question
@@ -24,9 +19,9 @@ const HomePage = ({ questions, updateQuestion, auth:{user, loading} }) => {
   return (
     <div className='h-100'>
       <div className='col-md-8 mx-auto py-4 h-100'>
-        <button to='/homepage' className='mb-3 d-inline btn btn-outline-danger'>
+        <Button to='/homepage' className='mb-3 d-inline btn btn-outline-danger'>
           <span>Toggle Question </span>
-        </button>
+        </Button>
         <div className='border border-dander text-center py-3 px-2 mt-4 bg-white '>
           <h2 className="text-weight-bold"> WOULD YOU RATHER </h2>
           {!loading && unAnsweredQuestion.length !== 0 ? (
@@ -59,3 +54,28 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { updateQuestion })(HomePage);
+
+
+// styling using styled-components
+const btn = keyframes`
+  from {box-shadow: 0 0 20px rgb(220, 53, 69, 0.4)};
+  to {box-shadow: 0 0 20px rgb(220, 53, 69, 0.7)};
+`;
+
+const QuestionDiv = styled.div`
+  max-height: 300px;
+  overflow: auto;
+`;
+
+const Button = styled.button`
+  box-shadow: 0 0 20px #dc3545;
+  animation: ${btn} 1s infinite;
+  // animation-fill-mode: forwards;
+
+  transition-property: transform;
+  transition-duration: 2s;
+
+  &:hover {
+    // transform: rotateY(360deg)
+  }
+`

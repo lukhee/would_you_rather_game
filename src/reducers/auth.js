@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT} from '../actions/constType'
+import {LOGIN, LOGOUT, CREATE_USER} from '../actions/constType'
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: false,
@@ -20,7 +20,7 @@ const initialState = {
     {
       id: 4,
       name: 'Maryam Awari',
-    }
+    },
   ]
 }
 
@@ -39,6 +39,13 @@ export default function(state=initialState, action){
           ...state,
           user: null,
           isAuthenticated: false
+        }
+      case CREATE_USER:
+        return {
+          ...state,
+          user: payload,
+          users: [{id: 5, ...payload},...state.users],
+          isAuthenticated: true
         }
       default:
           return state

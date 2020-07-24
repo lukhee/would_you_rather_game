@@ -33,10 +33,10 @@ function CreateQuestion({history, createQuestion, user}) {
 
         <form onSubmit={(e) => onSubmit(e)} className='mt-2'>
           <div className='form-group d-md-flex justify-content-between'>
-            <label htmlFor='optionA' className='col-md-2 col-form-label'>
+            <label htmlFor='optionA' className='col-md-3 col-form-label'>
               Option A
             </label>
-            <div className='col-md-10'>
+            <div className='col-md-9'>
               <input
                 type='text'
                 onChange={(e) => onChangeHandler(e)}
@@ -51,10 +51,10 @@ function CreateQuestion({history, createQuestion, user}) {
           <p className='font-weight-bold'> OR </p>
 
           <div className='form-group d-md-flex justify-content-between'>
-            <label htmlFor='optionB' className='col-md-2 col-form-label'>
+            <label htmlFor='optionB' className='col-md-3 col-form-label'>
               Option B
             </label>
-            <div className='col-md-10'>
+            <div className='col-md-9'>
               <input
                 type='text'
                 onChange={(e) => onChangeHandler(e)}
