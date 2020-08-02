@@ -6,9 +6,9 @@ import {connect} from 'react-redux'
 const Footer = ({ history, isAuthenticated }) => {
   return (
     <FooterDiv className='bg-danger p-3 my-auto'>
-      <SettingContainer className='bg-light p-4 shadow-lg shadow-danger'>
+      {/* <SettingContainer className='bg-light p-4 shadow-lg shadow-danger'>
         Update and Delete field
-      </SettingContainer>
+      </SettingContainer> */}
       <div className='d-flex justify-content-between'>
         <button
           onClick={() => history.push('/create_question')}

@@ -13,7 +13,7 @@ const Register = ({ createUser, history, auth: { isAuthenticated } }) => {
     username: "",
     errors: {},
   });
-  const {email, password, username} = formData
+  const { email, password, username } = formData;
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -30,14 +30,14 @@ const Register = ({ createUser, history, auth: { isAuthenticated } }) => {
         .where("username", "==", username.toLowerCase())
         .get()
         .then((snap) => {
-          if(snap.empty){
-            return createUser({email, username, password}, history)
+          if (snap.empty) {
+            return createUser({ email, username, password }, history);
           }
-          alert("user found pleae pick another user")
+          alert("user found pleae pick another user");
         });
     } catch (error) {
-      console.log(error)
-      alert("error found with server")
+      console.log(error);
+      alert("error found with server");
     }
   };
 
@@ -50,33 +50,34 @@ const Register = ({ createUser, history, auth: { isAuthenticated } }) => {
   };
 
   return (
-    <div className="col-md-8 mx-auto py-4 text-center">
-      <h2> Register </h2>
-      <p> Create A new user to add to existing users </p>
+    <div className="col-md-8 mx-auto py-4 text-center shadow-lg">
+      <span className="mb-2 p-2 rounded-circle bg-danger text-white">
+        <i className="fas fa-user-lock"></i>
+      </span>
+      <h2> Sign Up </h2>
       <div>
-        <form
-          onSubmit={(e) => onSubmit(e)}
-          className="mt-2 shadow-lg py-4 rounded"
-        >
+        <form onSubmit={(e) => onSubmit(e)} className="mt-2 py-4 rounded">
           <div className="form-group d-md-flex justify-content-around">
             <div className="col-md-9">
-              <input
-                type="text"
-                onChange={(e) => onChangeHandler(e)}
-                value={formData.email}
-                placeholder="Email"
-                className="form-control mb-3"
-                id="email"
-              />
+              <div className="row justify-content-between mx-0">
+                <input
+                  type="text"
+                  onChange={(e) => onChangeHandler(e)}
+                  value={formData.email}
+                  placeholder="Email"
+                  className="form-control mb-3 col-12 col-md-6"
+                  id="email"
+                />
 
-              <input
-                type="text"
-                onChange={(e) => onChangeHandler(e)}
-                value={formData.username}
-                placeholder="Username"
-                className="form-control mb-3"
-                id="username"
-              />
+                <input
+                  type="text"
+                  onChange={(e) => onChangeHandler(e)}
+                  value={formData.username}
+                  placeholder="Username"
+                  className="form-control mb-3 col-12 col-md-5"
+                  id="username"
+                />
+              </div>
 
               <input
                 type="password"
@@ -99,8 +100,17 @@ const Register = ({ createUser, history, auth: { isAuthenticated } }) => {
               <input
                 type="submit"
                 value="Submit"
-                className=" mt-3 form-control btn btn-outline-danger"
+                className=" mt-3 mb-1 form-control btn btn-outline-danger"
               />
+
+              <div className="text-right">
+                <span
+                  onClick={() => history.push("/sign_in")}
+                  className="btn  px-0 text-danger"
+                >
+                  Already have an account? sign in{" "}
+                </span>
+              </div>
             </div>
           </div>
         </form>

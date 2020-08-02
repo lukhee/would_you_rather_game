@@ -8,13 +8,13 @@ const SignInPage = ({ login, history, auth: { isAuthenticated } }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    errors:{},
+    errors: {},
   });
   const { email, password } = formData;
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const { valid, errors } = validateLoginData({email, password});
+    const { valid, errors } = validateLoginData({ email, password });
     if (!valid) {
       setFormData({
         ...formData,
@@ -34,16 +34,19 @@ const SignInPage = ({ login, history, auth: { isAuthenticated } }) => {
   };
 
   return (
-    <div className="col-md-8 mx-auto py-4 text-center">
-      <h2> SignInPage </h2>
-      <p> Login with your credential below </p>
+    <div className="col-md-8 mx-auto py-4 text-center shadow-lg">
+      <span className="mb-2 p-2 rounded-circle bg-danger text-white">
+        {" "}
+        <i className="fas fa-user-lock"></i>
+      </span>
+      <h2> Sign In </h2>
       <div>
         <form
           onSubmit={(e) => onSubmit(e)}
-          className="mt-2 shadow-lg py-4 rounded"
+          className="mt-2 py-4 rounded"
         >
           <div className="form-group d-md-flex justify-content-around">
-            <div className="col-md-9">
+            <div className="col-md-7">
               <input
                 type="text"
                 onChange={(e) => onChangeHandler(e)}
@@ -65,8 +68,17 @@ const SignInPage = ({ login, history, auth: { isAuthenticated } }) => {
               <input
                 type="submit"
                 value="Submit"
-                className=" mt-3 form-control btn btn-outline-danger"
+                className=" mt-3 mb-1 form-control btn btn-outline-danger"
               />
+
+              <div className="text-left">
+                <span
+                  onClick={() => history.push("/register")}
+                  className="btn px-0 text-danger"
+                >
+                  Don't have an account? Sign Up
+                </span>
+              </div>
             </div>
           </div>
         </form>

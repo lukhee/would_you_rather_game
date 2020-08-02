@@ -17,7 +17,7 @@ export const login = (data, history) => async (dispatch) => {
       type: LOGIN,
       payload: { username, email, login_id: id, createdAt },
     });
-    history.push("/homePaget");
+    history.push("/homePage");
   } catch (error) {
     console.log(error.message);
   }

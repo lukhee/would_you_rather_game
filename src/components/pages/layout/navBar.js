@@ -56,8 +56,8 @@ const NavBar = ({
               <button
                 className='btn btn-sm btn-outline-danger bg-white ml-2'
                 onClick={logoutUserHandler}
-              >
-                logoutUser
+              ><span className="pr-1 text-danger"> <i className="fas fa-sign-out-alt"></i></span>
+                logout
               </button>
             </div>
           </div>
