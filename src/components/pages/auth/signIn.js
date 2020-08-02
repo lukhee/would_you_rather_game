@@ -1,23 +1,20 @@
 import React, { useState } from "react";
-import { createUser } from "../../../actions/auth";
+import { login } from "../../../actions/auth";
 import { connect } from "react-redux";
 import Proptypes from "prop-types";
-import { db } from "../../../services/firebase";
-import { validateSignUpData } from "../helpers/validator";
+import { validateLoginData } from "../helpers/validator";
 
-const Register = ({ createUser, history, auth: { isAuthenticated } }) => {
+const SignInPage = ({ login, history, auth: { isAuthenticated } }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
-    username: "",
-    errors: {},
+    errors:{},
   });
-  const {email, password, username} = formData
+  const { email, password } = formData;
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    const { valid, errors } = validateSignUpData(formData);
+    const { valid, errors } = validateLoginData({email, password});
     if (!valid) {
       setFormData({
         ...formData,
@@ -25,20 +22,7 @@ const Register = ({ createUser, history, auth: { isAuthenticated } }) => {
       });
       return;
     }
-    try {
-      db.collection("users")
-        .where("username", "==", username.toLowerCase())
-        .get()
-        .then((snap) => {
-          if(snap.empty){
-            return createUser({email, username, password}, history)
-          }
-          alert("user found pleae pick another user")
-        });
-    } catch (error) {
-      console.log(error)
-      alert("error found with server")
-    }
+    login(formData, history);
   };
 
   const onChangeHandler = (e) => {
@@ -51,8 +35,8 @@ const Register = ({ createUser, history, auth: { isAuthenticated } }) => {
 
   return (
     <div className="col-md-8 mx-auto py-4 text-center">
-      <h2> Register </h2>
-      <p> Create A new user to add to existing users </p>
+      <h2> SignInPage </h2>
+      <p> Login with your credential below </p>
       <div>
         <form
           onSubmit={(e) => onSubmit(e)}
@@ -70,30 +54,12 @@ const Register = ({ createUser, history, auth: { isAuthenticated } }) => {
               />
 
               <input
-                type="text"
-                onChange={(e) => onChangeHandler(e)}
-                value={formData.username}
-                placeholder="Username"
-                className="form-control mb-3"
-                id="username"
-              />
-
-              <input
                 type="password"
                 onChange={(e) => onChangeHandler(e)}
                 value={formData.password}
                 placeholder="Password"
                 className="form-control mb-3"
                 id="password"
-              />
-
-              <input
-                type="password"
-                onChange={(e) => onChangeHandler(e)}
-                value={formData.confirmPassword}
-                placeholder="Confirm Password"
-                className="form-control mb-3"
-                id="confirmPassword"
               />
 
               <input
@@ -109,8 +75,8 @@ const Register = ({ createUser, history, auth: { isAuthenticated } }) => {
   );
 };
 
-Register.propTypes = {
-  createUser: Proptypes.func.isRequired,
+SignInPage.propTypes = {
+  login: Proptypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -119,7 +85,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { createUser })(Register);
+export default connect(mapStateToProps, { login })(SignInPage);
 
 // const breatheAnimation = keyframes`
 //  0% { height: 100px; width: 100px; }

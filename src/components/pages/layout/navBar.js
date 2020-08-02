@@ -1,13 +1,13 @@
 import React , { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
-import { logout } from '../../../actions/auth';
+import { logoutUser } from '../../../actions/auth';
 import { withRouter } from 'react-router-dom';
 
 const NavBar = ({
   auth: { user, isAuthenticated, loading },
   questions,
-  logout,
+  logoutUser,
   history,
 }) => {
   const [authToggle, setAuth] = useState(true)
@@ -26,6 +26,12 @@ const NavBar = ({
     setAuth(!authToggle)
     history.push(`/${toggleRegister}`)
   }
+
+  const logoutUserHandler = () => {
+    setAuth(true)
+    logoutUser(history)
+  }
+
   return (
     <NavBarDiv className='m-0 my-auto border-bottom border-danger'>
       <NavContent className= "row justify-content-between m-0 p-2 px-4">
@@ -46,16 +52,16 @@ const NavBar = ({
               </p>
             </div>
             <div className='d-flex'>
-              <P className='my-auto name font-weight-bold'> {user.name}</P>
+              <P className='my-auto name font-weight-bold'> {user.username}</P>
               <button
                 className='btn btn-sm btn-outline-danger bg-white ml-2'
-                onClick={logout}
+                onClick={logoutUserHandler}
               >
-                Logout
+                logoutUser
               </button>
             </div>
           </div>
-        ) : <button onClick={authHandler} className="btn btn-outline-danger btn-sm px-3"> {toggleRegister} </button>}
+        ) : <button onClick={authHandler} className="btn btn-sm btn-outline-danger"> {toggleRegister} </button>}
       </NavContent>
     </NavBarDiv>
   );
@@ -72,7 +78,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { logout })(withRouter(NavBar));
+export default connect(mapStateToProps, { logoutUser })(withRouter(NavBar));
 
 
 

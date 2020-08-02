@@ -17,9 +17,7 @@ const Footer = ({ history, isAuthenticated }) => {
         >
           Create Question
         </button>
-        <button disabled = {!isAuthenticated && true} className="btn">
-          <SettingIcon className='text-white my-auto fas fa-cogs btn' />
-        </button>
+        <SettingIcon className='text-white my-auto fas fa-cogs btn' />
       </div>
     </FooterDiv>
   );

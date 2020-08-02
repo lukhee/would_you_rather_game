@@ -1,13 +1,15 @@
-import React from 'react';
-import QuestionTag from './questionCard';
-import styled, { keyframes } from 'styled-components';
-import { connect } from 'react-redux';
-import { updateQuestion } from '../../../actions/question';
-import Proptypes from 'prop-types';
+import React from "react";
+import QuestionTag from "./questionCard";
+import styled, { keyframes } from "styled-components";
+import { connect } from "react-redux";
+import { updateQuestion } from "../../../actions/question";
+import Proptypes from "prop-types";
 
-const HomePage = ({ questions, updateQuestion, auth:{user, loading} }) => {
+const HomePage = ({ questions, updateQuestion, auth: { user, loading } }) => {
   // finding the unanswered question
-  const unAnsweredQuestion = questions.filter(({answers}) => !answers.some(item => [user.id].includes(item)))
+  const unAnsweredQuestion = questions.filter(
+    ({ answers }) => !answers.some((item) => [user.id].includes(item))
+  );
 
   // update question
   const updateQuestionHandler = (questValue) => {
@@ -17,12 +19,12 @@ const HomePage = ({ questions, updateQuestion, auth:{user, loading} }) => {
   };
 
   return (
-    <div className='h-100'>
-      <div className='col-md-8 mx-auto py-4 h-100'>
-        <Button to='/homepage' className='mb-3 d-inline btn btn-outline-danger'>
+    <div className="h-100">
+      <div className="col-md-8 mx-auto py-4 h-100">
+        <Button to="/homepage" className="mb-3 d-inline btn btn-outline-danger">
           <span>Toggle Question </span>
         </Button>
-        <div className='border border-dander text-center py-3 px-2 mt-4 bg-white '>
+        <div className="border border-dander text-center py-3 px-2 mt-4 bg-white ">
           <h2 className="text-weight-bold"> WOULD YOU RATHER </h2>
           {!loading && unAnsweredQuestion.length !== 0 ? (
             <QuestionDiv>
@@ -34,7 +36,9 @@ const HomePage = ({ questions, updateQuestion, auth:{user, loading} }) => {
                 />
               ))}
             </QuestionDiv>
-          ) : <p> You have answered all the questions</p>}
+          ) : (
+            <p> You have answered all the questions</p>
+          )}
         </div>
       </div>
     </div>
@@ -54,7 +58,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { updateQuestion })(HomePage);
-
 
 // styling using styled-components
 const btn = keyframes`
@@ -78,4 +81,4 @@ const Button = styled.button`
   &:hover {
     // transform: rotateY(360deg)
   }
-`
+`;

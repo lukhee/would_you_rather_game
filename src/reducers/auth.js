@@ -30,7 +30,7 @@ export default function(state=initialState, action){
       case LOGIN:
       return {
           ...state,
-          user: state.users.filter(user=> payload === user.id)[0],
+          user: payload,
           loading: false,
           isAuthenticated: true
       }
@@ -45,7 +45,8 @@ export default function(state=initialState, action){
           ...state,
           user: payload,
           users: [{id: 5, ...payload},...state.users],
-          isAuthenticated: true
+          isAuthenticated: true,
+          loading: false
         }
       default:
           return state

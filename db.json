@@ -1,25 +1,22 @@
 {
-  "user": [
+  "employees": [
     {
-      "id": "idrt364g",
-      "name": "Balogun Lukman",
-      "username": "lukhee",
-      "avatar": "BL"
+      "id": 1,
+      "first_name": "Sebastian",
+      "last_name": "Eschweiler",
+      "email": "sebastian@codingthesmartway.com"
     },
     {
-      "id": "idre564g",
-      "name": "Olawale Martin",
-      "username": "Wale",
-      "avatar": "OM"
+      "id": 2,
+      "first_name": "Steve",
+      "last_name": "Palmer",
+      "email": "steve@codingthesmartway.com"
     },
     {
-      "id": "irrt474g",
-      "name": "Patric Nutritial",
-      "username": "patric",
-      "avatar": "PN"
+      "id": 3,
+      "first_name": "Ann",
+      "last_name": "Smith",
+      "email": "ann@codingthesmartway.com"
     }
-  ],
-  "questions": [
-
   ]
 }

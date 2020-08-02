@@ -16,8 +16,8 @@ const initialState = {
       id: 2,
       userId: '12hg23',
       questionTag: {
-        optionA: 'Skydive',
-        optionB: 'Snokel',
+        optionA: 'Smoking',
+        optionB: 'Drinking',
       },
       answers:[2],
       creator: 1
@@ -26,8 +26,8 @@ const initialState = {
       id: 3,
       userId: '12hg23',
       questionTag: {
-        optionA: 'Play outdoor',
-        optionB: 'Play indoor',
+        optionA: 'Ghana Jollof Rice',
+        optionB: 'Naija Jollof Rice',
       },
       answers:[3],
       creator: 2
@@ -46,8 +46,8 @@ const initialState = {
       id: 5,
       userId: '12hg23',
       questionTag: {
-        optionA: 'Skydive',
-        optionB: 'Snokel',
+        optionA: 'Big Wedding',
+        optionB: 'Small Wedding',
       },
       answers:[3],
       creator: 1
