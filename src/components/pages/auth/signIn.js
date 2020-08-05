@@ -14,6 +14,7 @@ const SignInPage = ({ login, history, auth: { isAuthenticated } }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log("submil login data")
     const { valid, errors } = validateLoginData({ email, password });
     if (!valid) {
       setFormData({

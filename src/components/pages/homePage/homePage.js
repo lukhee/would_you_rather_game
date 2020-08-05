@@ -1,21 +1,27 @@
-import React from "react";
-import QuestionTag from "./questionCard";
+import React, { useEffect, useDebugValue } from "react";
+import QuestionCard from "./questionCard";
 import styled, { keyframes } from "styled-components";
 import { connect } from "react-redux";
-import { updateQuestion } from "../../../actions/question";
+import { updateQuestion, getQuestions } from "../../../actions/question";
 import Proptypes from "prop-types";
 
-const HomePage = ({ questions, updateQuestion, auth: { user, loading } }) => {
+const HomePage = ({
+  questions,
+  getQuestions,
+  updateQuestion,
+  auth: { user, loading },
+}) => {
+  useEffect(() => {
+    getQuestions();
+  }, []);
   // finding the unanswered question
   const unAnsweredQuestion = questions.filter(
     ({ answers }) => !answers.some((item) => [user.id].includes(item))
   );
 
   // update question
-  const updateQuestionHandler = (questValue) => {
-    setTimeout(() => {
-      updateQuestion(questValue, user.id);
-    }, 1000);
+  const updateQuestionHandler = (answer) => {
+    updateQuestion({ user_id: user.login_id, option: answer.option }, answer.questID);
   };
 
   return (
@@ -29,8 +35,8 @@ const HomePage = ({ questions, updateQuestion, auth: { user, loading } }) => {
           {!loading && unAnsweredQuestion.length !== 0 ? (
             <QuestionDiv>
               {unAnsweredQuestion.map((ques) => (
-                <QuestionTag
-                  updateQuestion={(id) => updateQuestionHandler(id)}
+                <QuestionCard
+                  updateQuestion={(value) => updateQuestionHandler(value)}
                   ques={ques}
                   key={ques.id}
                 />
@@ -57,7 +63,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { updateQuestion })(HomePage);
+export default connect(mapStateToProps, { updateQuestion, getQuestions })(
+  HomePage
+);
 
 // styling using styled-components
 const btn = keyframes`

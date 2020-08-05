@@ -12,10 +12,10 @@ export const login = (data, history) => async (dispatch) => {
     const loginUser = await signin(data.email, data.password);
     const userId = loginUser.user.uid;
     const find_user = await findUser(userId);
-    const { username, email, createdAt, id } = find_user.docs[0].data();
+    const { username, email, createdAt, user_id } = find_user.docs[0].data();
     dispatch({
       type: LOGIN,
-      payload: { username, email, login_id: id, createdAt },
+      payload: { username, email, login_id: user_id, createdAt },
     });
     history.push("/homePage");
   } catch (error) {

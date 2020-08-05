@@ -47,11 +47,11 @@ const showSetting = keyframes`
   to { right: 0 }
 `
 
-const SettingContainer = styled.div`
-  position: absolute;
-  bottom: 10vh;
-  z-index: 100;
-  right: 0;
-  animation: ${showSetting} 4s 1;
-  animation-fill-mode: forwards
-`
+// const SettingContainer = styled.div`
+//   position: absolute;
+//   bottom: 10vh;
+//   z-index: 100;
+//   right: 0;
+//   animation: ${showSetting} 4s 1;
+//   animation-fill-mode: forwards
+// `
