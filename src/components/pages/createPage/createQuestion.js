@@ -20,7 +20,7 @@ function CreateQuestion({history, createQuestion, user}) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createQuestion(formData, user.login_id, history)
+    createQuestion(formData, user.user_id, history)
   };
 
   return (

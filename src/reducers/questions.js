@@ -26,15 +26,15 @@ export default function (state = initialState, action) {
       };
     case UPDATE_QUESTION:
       const updateQuestion = state.questions.find(
-        (q) => q.id === payload.questValue.questID
+        (q) => q.id === payload.questionID
       );
       return {
         ...state,
         questions: [
-          ...state.questions.filter((q) => q.id !== payload.questValue.questID),
+          ...state.questions.filter((q) => q.id !== payload.questionID),
           {
             ...updateQuestion,
-            answers: [payload.userID, ...updateQuestion.answers],
+            answers: [payload.answer, ...updateQuestion.answers],
           },
         ],
         loading: false,

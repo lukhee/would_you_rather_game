@@ -19,20 +19,17 @@ export const createQuestion = (data, userId, history) => async (dispatch) => {
 };
 
 export const updateQuestion = (answer, questionID) => async (dispatch) => {
-  console.log(answer)
-  console.log(questionID)
   try {
-    const result = await db.doc(questionID).update({
-      answers: firebase.firestore.FieldValue.arrayUnion(answer)
-  });
-  console.log(result)
+    await firebaseDB.doc(questionID).update({
+      answers: firebase.firestore.FieldValue.arrayUnion(answer),
+    });
+    dispatch({
+      type: UPDATE_QUESTION,
+      payload: { answer, questionID },
+    });
   } catch (error) {
-    
+    console.log(error.message);
   }
-  // dispatch({
-  //   type: UPDATE_QUESTION,
-  //   payload: { questValue, userID },
-  // });
 };
 
 export const getQuestions = () => async (dispatch) => {

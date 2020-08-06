@@ -15,9 +15,9 @@ const NavBar = ({
     no_q_answered = 0;
 
   if (isAuthenticated) {
-    no_q_created = questions.filter((q) => q.creator === user.id).length;
+    no_q_created = questions.filter((q) => q.creator === user.user_id).length;
     no_q_answered = questions.filter(({ answers }) =>
-      answers.some((item) => [user.id].includes(item))
+      answers.some((ans) => ans['user_id']=== user.user_id)
     ).length;
   }
 

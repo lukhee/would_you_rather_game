@@ -105,7 +105,7 @@ const Register = ({ createUser, history, auth: { isAuthenticated } }) => {
 
               <div className="text-right">
                 <span
-                  onClick={() => history.push("/sign_in")}
+                  onClick={() => history.push("/")}
                   className="btn  px-0 text-danger"
                 >
                   Already have an account? sign in{" "}

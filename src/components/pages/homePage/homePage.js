@@ -16,14 +16,16 @@ const HomePage = ({
   }, []);
   // finding the unanswered question
   const unAnsweredQuestion = questions.filter(
-    ({ answers }) => !answers.some((item) => [user.id].includes(item))
+    ({ answers }) => !answers.some((ans) => ans["user_id"] === user.user_id)
   );
 
   // update question
   const updateQuestionHandler = (answer) => {
-    updateQuestion({ user_id: user.login_id, option: answer.option }, answer.questID);
+    updateQuestion(
+      { user_id: user.user_id, option: answer.option },
+      answer.questID
+    );
   };
-
   return (
     <div className="h-100">
       <div className="col-md-8 mx-auto py-4 h-100">
