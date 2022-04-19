@@ -16,58 +16,50 @@ commands:
         type: string
     steps:
       - run: echo << parameters.id >>
-
-  # Exercise - Rollback
-  destroy_environment:
+jobs:
+  # Exercise: Creating a Simple Workflow
+  # Exercise: Environment Variables
+  # Exercise: Reusable Job Code
+  aws-cli-cred-setup:
+    executor: aws-cli/default
     steps:
-      - run:
-          name: Destroy environment
-          # ${CIRCLE_WORKFLOW_ID} is a Built-in environment variable 
-          # ${CIRCLE_WORKFLOW_ID:0:5} takes the first 5 chars of the variable CIRCLE_CI_WORKFLOW_ID 
-          when: on_fail
-          command: |
-            aws cloudformation delete-stack --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5}
-  jobs:
-    # Exercise: Creating a Simple Workflow
-    # Exercise: Environment Variables
-    # Exercise: Reusable Job Code 
-    print_greetings:
-      docker:
-        - image: circleci/node:13.8.0
-      steps:
-        - print_pipeline_id:
-            id: << pipeline.id >>
-        - run: echo HELLO
-        - run: echo WORLD
-        - run: echo $_env_name
-    aws-cli-cred-setup:
-      executor: aws-cli/default
-      steps:
-        - aws-cli/setup:
-            aws-access-key-id: AWS_ACCESS_KEY
-            aws-secret-access-key: AWS_ACCESS_SECRET
-            aws-region: AWS_REGION_NAME
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_ACCESS_SECRET
+          aws-region: AWS_REGION_NAME 
+  print_greetings:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - print_pipeline_id:
+          id: << pipeline.id >>
+      - run: echo HELLO
+      - run: echo WORLD
+      - run: echo $_env_name
+      - run: echo A_KEY $AWS_ACCESS_KEY
+      - run: echo A_SEC $AWS_ACCESS_SECRET
+      - run: echo A_REG_NAME $AWS_REGION_NAME
 
-    # Exercise: Infrastructure Creation
-    # Exercise - Rollback
-    create_infrastructure: 
-      docker:
-        - image: amazon/aws-cli
-      steps:
-        - checkout
-        - run:
-            name: Create Cloudformation Stack
-            command: |
-              aws cloudformation deploy \
-                --template-file template.yml \
-                --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
-                --region us-east-1
-        - destroy_environment
-  workflows:
-    # Name the workflow "welcome"
-    my_workflow:
-      # Run the welcome/run job in its own container
-      jobs:
-        # - welcome/run
-        - print_greetings
-        - create_infrastructure
+  # Exercise: Infrastructure Creation
+  # Exercise - Rollback
+  create_infrastructure: 
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
+          name: Create Cloudformation Stack
+          command: |
+            aws cloudformation deploy \
+              --template-file template.yml \
+              --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+              --region us-east-1
+      - destroy_environment
+workflows:
+  # Name the workflow "welcome"
+  my_workflow:
+    # Run the welcome/run job in its own container
+    jobs:
+      # - welcome/run
+      - print_greetings
+      - create_infrastructure
