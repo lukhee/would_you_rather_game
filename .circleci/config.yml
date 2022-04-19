@@ -42,6 +42,13 @@ jobs:
       - run: echo HELLO
       - run: echo WORLD
       - run: echo $_env_name
+  aws-cli-cred-setup:
+    executor: aws-cli/default
+    steps:
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_ACCESS_SECRET
+          aws-region: AWS_REGION_NAME
  
   # Exercise: Infrastructure Creation
   # Exercise - Rollback
